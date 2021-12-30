@@ -1,0 +1,54 @@
+1) 
+
+SELECT CountryName FROM Country WHERE Population <1000;
+
+2) 
+ALTER TABLE Country RENAME COLUMN Name TO CountryName;
+(Alternativt SELECT Name AS Countryname, Area, Population)
+SELECT CountryName, Area, Population FROM Country WHERE Population < 1000;
+
+3)
+SELECT Name, Population, Area
+   ...> FROM Country
+   ...> WHERE (Population >1000) AND (Population < 2000) AND Area > 1.0;
+
+4) SELECT Code FROM Country WHERE Name = "Norway";
+
+5)
+SELECT Code FROM Country WHERE Name = "Sweden";
+
+SELECT Name FROM City WHERE Country = "S" AND Population > 500000;
+
+6)
+CREATE TABLE CitiesBelowZero AS
+   ...> SELECT Name, Population, ELevation
+   ...> FROM City
+   ...> WHERE Elevation < 0;
+
+7) SELECT SUM(Population) AS total , AVG(Population) AS average, MIN(Population) AS minimum, MAX(Population) AS maximum
+   ...> FROM CitiesBelowZero;
+
+8)
+SELECT Name
+   ...> FROM City
+   ...> WHERE ((Name LIKE "Los%") OR (Name LIKE "%holm"))  AND (Name NOT LIKE "%is");
+
+9) SELECT Name, Population
+   ...> FROM Country
+   ...> ORDER BY Population DESC
+   ...> LIMIT 5;
+10)
+SELECT Country.Name, City.Name, City.Elevation
+   ...> FROM Country, City
+   ...> WHERE City.Elevation IS NOT NULL AND City.Country = Country.Code
+   ...> ORDER BY City.Elevation ASC
+   ...> LIMIT 5;
+11)
+CREATE TABLE StartYendX AS
+   ...> SELECT Name
+   ...> FROM Country
+   ...> WHERE Name LIKE "Y%"
+   ...> UNION
+   ...> SELECT Name
+   ...> FROM City
+   ...> WHERE Name LIKE "%X";

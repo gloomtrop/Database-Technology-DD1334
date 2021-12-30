@@ -1,0 +1,17 @@
+Part 1
+a) 
+CREATE VIEW PopData AS
+SELECT Citypops.year, Citypops.City AS Name, Citypops.population AS Population, Citypops.country AS Country,
+City.longitude AS Longitude, City.latitude AS Latitude, City.elevation AS Eleviation,
+Economy.agriculture AS Agriculture, Economy.service AS Service,
+Economy.industry AS Industry,Economy.inflation AS Inflation
+FROM Citypops,City,Economy
+WHERE Citypops.City = City.Name AND City.Country = Economy.Country AND Citypops.Country = City.Country
+
+b) A View is a relation defined in terms of stored tables which is a query referencing source relations. While materialized is a costructed relation and is stored. This View will not be altered while the query is very timeconsuming. However, I dont have to do the query multiple times and the data is a small set which then suggest that materialized view is not a needed in this case.
+
+Part 2
+a) In code
+
+b) This reason is wrong because of the fact that the cities are not labeled which then makes it impossible to destinguish the volatility of population for specific cities. WHile at the same time, if a family have more than 2 children, the growth is exonential. 
+
